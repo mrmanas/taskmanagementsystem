@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Create Task</title>
+    <style>
+        /* Center the form */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+        }
+        /* Adjust form width */
+        .form-container {
+            max-width: 400px;
+            width: 100%;
+        }
+        h1{
+			text-align: center;
+			color: blueviolet;
+		}
+    </style>
+</head>
+<body>
+	<h1>
+		Create/Update Tasks</h1>
+   <div class="container">
+       <div class="form-container">
+           <form th:action="@{/addTask}" th:object="${todo}" method="post">
+               <!-- Hidden input field for id -->
+               <input type="hidden" th:field="*{id}"/>
+               <label for="title">Enter Task Title:</label><br>
+               <input type="text" id="title" th:field="*{task}" th:required="required" class="form-control"><br>
+               <label for="description">Enter Task Description:</label><br>
+               <input type="text" id="description" th:field="*{todoDescription}" th:required="required" class="form-control"><br>
+               <input type="submit" value="Submit" class="btn btn-primary">
+           </form>
+       </div>
+   </div>
+</body>
+</html>

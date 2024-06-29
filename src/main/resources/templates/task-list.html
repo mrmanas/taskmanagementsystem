@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .navbar {
+            background-color: black; /* Set navbar background color to black */
+            color: white; /* Set text color to white */
+            padding: 20px; /* Add padding for better appearance */
+            margin-bottom: 20px; /* Add margin bottom to avoid overlap */
+        }
+        
+        .footer {
+            background-color: black; /* Set footer background color to black */
+            color: white; /* Set text color to white */
+            padding: 0px; /* Add padding for better appearance */
+            text-align: center; /* Align text to the center */
+            position: fixed; /* Fix the footer to the bottom of the page */
+            width: 100%; /* Set footer width to 100% */
+            bottom: 0; /* Align footer to the bottom */
+            left: 0; /* Align footer to the left */
+        }
+
+        th {
+            background-color: crimson;
+        }
+        
+        tr, th {
+            color: wheat;
+        }
+        
+        tr, td {
+            color: black;
+            padding: 8px;
+           
+            text-align: left;
+        }
+        
+        h1 {
+            color: white;
+        }
+        
+        h2 {
+            text-align: center;
+        }  
+    </style>
+</head>
+<body>
+	
+	<nav class="navbar navbar-dark">
+        <h1>Task Management System</h1>
+    </nav>
+
+    <h2>List Of Todos</h2>
+    <div class="container">
+        <a th:href="@{/getfrom}" class="btn btn-primary btn-sm">Add New Task</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Task Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="t : ${tasks}">
+                    <td th:text="${t.id}"></td>
+                    <td th:text="${t.task}"></td>
+                    <td th:text="${t.todoDescription}"></td>
+                    <td
+                       th:text="${t.completeStatus}">
+                    </td>
+                    <td>
+                        <a th:href="@{'/del/'+${t.id}}" class="btn btn-danger btn-sm">Delete</a>
+                        <a th:href="@{'/edit/'+${t.id}}" class="btn btn-primary btn-sm">Update</a>
+                        <div class="btn-group">
+                            <a th:href="@{'/markComplete/'+${t.id}}" class="btn btn-success btn-sm">Complete</a><br>
+                            <a th:href="@{'/markIncomplete/'+${t.id}}" class="btn btn-warning btn-sm">Incomplete</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="footer">
+        <p>Made by MANAS MISHRA</p>
+        <p> All Rights Reserved</p>
+    </div>
+</body>
+</html>
